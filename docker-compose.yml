@@ -26,6 +26,28 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - '5432'
+      
+  redis:
+    image: 'redis:5.0-alpine'
+    labels:
+      shipyard.liveness.exec.command: '["redis-cli", "keys", "*"]'
+      shipyard.liveness.initial_delay: 30
+      shipyard.liveness.period: 15
+      shipyard.readiness.exec.command: '["redis-cli", "keys", "*"]'
+      shipyard.readiness.initial_delay: 30
+      shipyard.readiness.period: 15
+    ports:
+      - '6379'
+      
+  redis-2:
+    image: 'redis:5.0-alpine'
+    labels:
+      shipyard.liveness.http.headers: '{"x-reason": "health"}'
+      shipyard.liveness.http.path: /healthz
+      shipyard.liveness.http.initial_delay: 30
+      shipyard.liveness.http.period: 15
+    ports:
+      - '6379'
 
 volumes:
   postgres:
