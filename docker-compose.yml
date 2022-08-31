@@ -33,7 +33,6 @@ services:
       shipyard.liveness.exec.command: '["redis-cli", "keys", "*"]'
       shipyard.liveness.initial_delay: 30
       shipyard.liveness.period: 15
-      shipyard.liveness.period: 15
       shipyard.liveness.success_threshold: 2
       shipyard.readiness.exec.command: '["redis-cli", "keys", "*"]'
       shipyard.readiness.initial_delay: 30
