@@ -46,10 +46,13 @@ services:
   redis-2:
     image: 'redis:5.0-alpine'
     labels:
-      shipyard.liveness.http.headers: '{"x-reason": "health"}'
-      shipyard.liveness.http.path: /healthz
-      shipyard.liveness.http.initial_delay: 30
-      shipyard.liveness.http.period: 15
+      shipyard.readiness.http.headers: '{"x-reason": "health"}'
+      shipyard.readiness.http.path: /healthz
+      shipyard.readiness.http.initial_delay: 30
+      shipyard.readiness.http.period: 15
+      shipyard.readiness.success_threshold: 3
+      shipyard.readiness.failure_threshold: 6
+      shipyard.readiness.timeout_seconds: 11
     ports:
       - '6379'
 
