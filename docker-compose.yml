@@ -30,7 +30,7 @@ services:
   redis:
     image: 'redis:5.0-alpine'
     labels:
-      shipyard.init: '["sleep", "20"]'
+      shipyard.init: 'sleep 30'
       shipyard.liveness.exec.command: '["redis-cli", "keys", "*"]'
       shipyard.liveness.initial_delay: 10
       shipyard.liveness.period: 15
