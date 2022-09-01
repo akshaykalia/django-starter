@@ -30,13 +30,14 @@ services:
   redis:
     image: 'redis:5.0-alpine'
     labels:
+      shipyard.init: '["sleep", "20"]'
       shipyard.liveness.exec.command: '["redis-cli", "keys", "*"]'
-      shipyard.liveness.initial_delay: 30
+      shipyard.liveness.initial_delay: 10
       shipyard.liveness.period: 15
       shipyard.liveness.success_threshold: 1
       shipyard.readiness.exec.command: '["redis-cli", "keys", "*"]'
-      shipyard.readiness.initial_delay: 30
-      shipyard.readiness.period: 15
+      shipyard.readiness.initial_delay: 5
+      shipyard.readiness.period: 5
       shipyard.readiness.success_threshold: 3
       shipyard.readiness.failure_threshold: 6
       shipyard.readiness.timeout_seconds: 11
