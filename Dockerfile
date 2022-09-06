@@ -26,6 +26,8 @@ ENV CRYPTOGRAPHY_DONT_BUILD_RUST=1
 RUN pip install --upgrade pip
 RUN pip install poetry
 
+fail at
+
 # Install Python dependencies
 ADD pyproject.toml poetry.lock ./
 RUN poetry install
