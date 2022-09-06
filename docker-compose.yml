@@ -27,6 +27,9 @@ services:
     ports:
       - '5432'
       
+  redis-2:
+    image: 'redis:5.0-alpine'
+      
   redis:
     image: 'redis:5.0-alpine'
     labels:
