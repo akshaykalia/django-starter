@@ -1,0 +1,27 @@
+version: '3'
+services:
+  http-echo: 
+    labels:
+      shipyard.route: '/'
+    image: jmalloc/echo-server
+    ports:
+      - '8080'
+
+  hello:
+    labels:
+      shipyard.job: true
+    image: busybox
+    command: 'env'
+
+  hello_cron:
+    labels:
+      shipyard.job: true
+      shipyard.job.schedule: '*/2 * * * *'
+      shipyard.job.restartPolicy: Never
+      shipyard.job.backoffLimit: 2
+      shipyard.job.activeDeadlineSeconds: 60
+      shipyard.job.successfulJobsHistoryLimit: 5
+      shipyard.job.failedJobsHistoryLimit: 3
+      shipyard.job.concurrencyPolicy: Forbid
+    image: busybox
+    command: 'echo "Hello World"'
